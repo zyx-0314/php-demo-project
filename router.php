@@ -9,4 +9,5 @@ if (php_sapi_name() === 'cli-server') {
     }
 }
 
-require BASE_PATH . '/index.php';
+// fallback to main entry
+require ERRORS_PATH . '/_404.error.php';
