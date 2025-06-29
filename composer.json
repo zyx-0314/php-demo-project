@@ -9,7 +9,8 @@
     ],
     "scripts": {
         "start": "php -S localhost:8000 router.php",
-        "postgresql:reset": "php utils/dbResetPostgresql.util.php"
+        "postgresql:reset": "php utils/dbResetPostgresql.util.php",
+        "postgresql:seed": "php utils/dbSeederPostgresql.util.php"
     },
     "require": {
         "vlucas/phpdotenv": "^5.6"
