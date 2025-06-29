@@ -19,8 +19,14 @@ $pdo = new PDO($dsn, $username, $password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
 
-echo "Applying schema from database/users.model.sql…\n";
+echo "Dropping old tables…\n";
+foreach ([
+    'users',
+] as $table) {
+    $pdo->exec("DROP TABLE IF EXISTS {$table} CASCADE;");
+}
 
+echo "Applying schema from database/users.model.sql…\n";
 $sql = file_get_contents('database/users.model.sql');
 
 if ($sql === false) {
@@ -31,9 +37,4 @@ if ($sql === false) {
 
 $pdo->exec($sql);
 
-echo "Truncating tables…\n";
-foreach (['users'] as $table) {
-    $pdo->exec("TRUNCATE TABLE {$table} RESTART IDENTITY CASCADE;");
-}
-
-echo "✅ PostgreSQL reset complete!\n";
+echo "✅ PostgreSQL migration complete!\n";

@@ -17,7 +17,6 @@ $password = $databases['pgPassword'];
 $dbname = $databases['pgDB'];
 
 $dsn = "pgsql:host={$databases['pgHost']};port={$port};dbname={$dbname}";
-echo $dsn;
 $pdo = new PDO($dsn, $username, $password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
