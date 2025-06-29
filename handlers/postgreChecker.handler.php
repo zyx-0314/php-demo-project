@@ -1,10 +1,10 @@
 <?php
 
-$host = "host.docker.internal"; 
+$host = "host.docker.internal";
 $port = "5112";
 $username = "user";
 $password = "password";
-$dbname = "mydatabase";
+$dbname = "schedule_arranger";
 
 $conn_string = "host=$host port=$port dbname=$dbname user=$username password=$password";
 

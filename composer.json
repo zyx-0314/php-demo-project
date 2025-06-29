@@ -10,5 +10,7 @@
     "scripts": {
         "start": "php -S localhost:8000 router.php"
     },
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
 }
