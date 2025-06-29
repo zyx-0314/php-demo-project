@@ -1,0 +1,14 @@
+{
+    "name": "zyx-0314/scheduler-arranger",
+    "type": "project",
+    "authors": [
+        {
+            "name": "zyx-0314",
+            "email": "ramirezian037@gmail.com"
+        }
+    ],
+    "scripts": {
+        "start": "php -S localhost:8000 router.php"
+    },
+    "require": {}
+}
