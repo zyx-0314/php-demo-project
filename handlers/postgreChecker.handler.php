@@ -2,7 +2,7 @@
 
 require_once UTILS_PATH . '/envSetter.util.php';
 
-$host = $databases['pgHost'];
+$host = 'host.docker.internal';
 $port = $databases['pgPort'];
 $username = $databases['pgUser'];
 $password = $databases['pgPassword'];
