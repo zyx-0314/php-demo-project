@@ -26,7 +26,7 @@ $action = $_REQUEST['action'] ?? null;
 if ($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $usernameInput = trim($_POST['username'] ?? '');
     $passwordInput = trim($_POST['password'] ?? '');
-    if (Auth::attempt($pdo, $usernameInput, $passwordInput)) {
+    if (Auth::login($pdo, $usernameInput, $passwordInput)) {
         header('Location: /pages/dashboard/index.php');
         exit;
     } else {

@@ -14,7 +14,7 @@ class Auth
     }
 
     /** Attempt login; returns true if successful */
-    public static function attempt(PDO $pdo, string $username, string $password): bool
+    public static function login(PDO $pdo, string $username, string $password): bool
     {
         try {
             // 1) Fetch the user record
@@ -28,16 +28,16 @@ class Auth
 
         } catch (\PDOException $e) {
             // Log any SQL errors
-            error_log('[Auth::attempt] PDOException: ' . $e->getMessage());
+            error_log('[Auth::login] PDOException: ' . $e->getMessage());
             return false;
         }
 
         // Debug output: did we get a row?
         if (!$user) {
-            error_log("[Auth::attempt] No user found for username='{$username}'");
+            error_log("[Auth::login] No user found for username='{$username}'");
             return false;
         } else {
-            error_log('[Auth::attempt] Retrieved user: ' . var_export([
+            error_log('[Auth::login] Retrieved user: ' . var_export([
                 'id' => $user['id'],
                 'username' => $user['username'],
                 'role' => $user['role'],
@@ -46,7 +46,7 @@ class Auth
 
         // 2) Verify password
         if (!password_verify($password, $user['password'])) {
-            error_log("[Auth::attempt] Password mismatch for user_id={$user['id']}");
+            error_log("[Auth::login] Password mismatch for user_id={$user['id']}");
             return false;
         }
 
@@ -58,7 +58,7 @@ class Auth
             'last_name' => $user['last_name'],
             'role' => $user['role'],
         ];
-        error_log("[Auth::attempt] Login successful for user_id={$user['id']}");
+        error_log("[Auth::login] Login successful for user_id={$user['id']}");
 
         return true;
     }
