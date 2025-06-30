@@ -4,6 +4,6 @@ CREATE TABLE IF NOT EXISTS public."users" (
     middle_name varchar(225),
     last_name varchar(225) NOT NULL,
     password varchar(225) NOT NULL,
-    username varchar(225) NOT NULL,
+    username varchar(225) NOT NULL UNIQUE,
     role varchar(225) NOT NULL
 );
