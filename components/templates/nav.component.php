@@ -31,6 +31,10 @@ function navHeader(array $navList, ?array $user = null): void
                             class="bg-blue-600 hover:bg-blue-700 mr-4 px-4 py-2 rounded text-white">
                             Log in
                         </a>
+                        <a href="/pages/signup/index.php"
+                            class="bg-blue-300 hover:bg-blue-700 mr-4 px-4 py-2 rounded text-white">
+                            Sign Up
+                        </a>
                     <?php endif; ?>
 
                     <button data-collapse-toggle="mobile-menu-2" type="button"

@@ -27,7 +27,7 @@ if ($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $usernameInput = trim($_POST['username'] ?? '');
     $passwordInput = trim($_POST['password'] ?? '');
     if (Auth::login($pdo, $usernameInput, $passwordInput)) {
-        header('Location: /pages/dashboard/index.php');
+        header('Location: /index.php');
         exit;
     } else {
         header('Location: /pages/login/index.php?error=Invalid%Credentials');

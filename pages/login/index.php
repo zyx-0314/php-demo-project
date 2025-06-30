@@ -6,15 +6,18 @@ require_once UTILS_PATH . '/auth.util.php';
 Auth::init();
 
 if (Auth::check()) {
-    header('Location: /pages/dashboard/index.php');
+    header('Location: /index.php');
     exit;
 }
 
 // call the layout you want to use from layout folder
-include LAYOUTS_PATH . "/main.layout.php";
+require_once LAYOUTS_PATH . "/main.layout.php";
 
 $error = trim((string) ($_GET['error'] ?? ''));
 $error = str_replace("%", " ", $error);
+
+$message = trim((string) ($_GET['message'] ?? ''));
+$message = str_replace("%", " ", $message);
 
 $title = "Login Page";
 
