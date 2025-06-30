@@ -26,13 +26,17 @@ function navHeader(array $navList, ?array $user = null): void
                         <a href="/pages/logout/index.php" class="bg-red-600 hover:bg-red-700 mr-4 px-4 py-2 rounded text-white">
                             Log out
                         </a>
+                        <a href="/pages/account/index.php"
+                            class="bg-slate-600 hover:bg-slate-700 mr-4 px-4 py-2 rounded text-white">
+                            Settings
+                        </a>
                     <?php else: ?>
                         <a href="/pages/login/index.php"
                             class="bg-blue-600 hover:bg-blue-700 mr-4 px-4 py-2 rounded text-white">
                             Log in
                         </a>
                         <a href="/pages/signup/index.php"
-                            class="bg-blue-300 hover:bg-blue-700 mr-4 px-4 py-2 rounded text-white">
+                            class="bg-gray-200 hover:bg-gray-100 mr-4 px-4 py-2 rounded text-white">
                             Sign Up
                         </a>
                     <?php endif; ?>
