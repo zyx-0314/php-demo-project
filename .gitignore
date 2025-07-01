@@ -3,3 +3,5 @@
 vendor
 .github
 .env
+/uploads/post
+/uploads/profile
