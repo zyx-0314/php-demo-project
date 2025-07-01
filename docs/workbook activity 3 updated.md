@@ -1,4 +1,4 @@
-# PHP + Database
+# PHP + Database using Action Controller MVC
 - PHP
 - Docker
 - Postgresql
@@ -395,13 +395,74 @@ $pdo->exec($sql);
 
 - [ ] visit GUI extension for database for checking and if each contents exist in the tables congrats it works!!! 🎉
 
-### 12. Making Functionality with database: postgresql
-- [ ] Auth Util
-- [ ] Auth Handler
-- [ ] Reconfig Checkers
-- [ ] Static Data
-- [ ] Components
-- [ ] Layout
-- [ ] Login and logout
-- [ ] Index
-- [ ] Custom Error
+## 12. Creating Utility Function Codes
+in this part you will be creating class which has specific function codes, this is similar on how you create OOP codes.
+
+- [ ] Strategies what functions you should have
+    - in this we are creating login where data are being retrieved and then checked out based on input of user if it matches
+    ```md
+    Input: username & password
+    Process:
+        - Connection Check on DB
+        - Check if username exist
+        - Compare Hashed Password
+    Output: If Success then move to specific page else move to specfic page with error
+    ```
+- [ ] Create a file in util following th format `nameOfFunction.util.php`
+    - in this demo we use `auth.util.php`
+- [ ] Create a class and define `public` and `private` functions
+```php
+class ClassName
+{
+    public static function publicFunction() {
+        // Code here
+    }
+
+    private static function privateFunction() {
+        // Code here
+    }
+
+}
+```
+- [ ] create `init` which must check if a `session` has started
+```php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+```
+- [ ] create `login` which must hold login logic
+- [ ] create a `user` which return the value of user hold inside the session
+- [ ] create a `check` which just return if in session a `user` has been set, indicates someone is logged in
+- [ ] create `logout` which clear out session, cookies logged
+
+## 13. Creating Handler/Controller Codes
+in this part the code controls the flow of interaction depends on their logic using handlers functionality to attain specific goals
+
+- [ ] strategies what functionality must be done
+    - [ ] login
+        - [ ] receives data from front end
+        - [ ] use handlers function (`Auth`) to login
+        - [ ] respond accordingly based on the return value of util
+        - [ ] must receive a feedback in form of page or messages
+    - [ ] logout
+        - [ ] trigger from front end
+        - [ ] execute the command of logout from `Auth`
+
+## 14. Connecting Backend and Frontend Codes
+after preparing the utility and handlers and after the front end designed the page you can now fuse the 2 together. in this demo we will use the login with form and button as triggers.
+
+Login:
+- [ ] look for the form and indicate the `/handlers/auth.handler.php` will be used as the controller in method of `POST`.
+- [ ] double check that the `name` of inputs matches your receiver in the handlers key in `$_POST[]`
+```php
+// ex.:
+// index.php
+<input id="username" name="username" type="text" required class="input">
+
+// _.handler.php
+$_POST['username']
+```
+
+## 16. (Bonus) Email Integration
+
+## 17. (Bonus) Image Upload in Postgresql
