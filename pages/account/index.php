@@ -53,7 +53,21 @@ renderMainLayout(
                 </div>
             <?php endif; ?>
 
-            <form action="/handlers/updateAccount.handler.php" method="POST">
+            <form action="/handlers/updateAccount.handler.php" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="profile_image" class="label">Profile Picture</label><br>
+                    <?php if (!empty($current['profile_image_path'])): ?>
+                        <img id="imagePreview" src="<?= htmlspecialchars($current['profile_image_path']) ?>"
+                            alt="Current avatar" style="max-width:150px; max-height:150px; display:block; margin-bottom:0.5em;">
+                    <?php else: ?>
+                        <img id="imagePreview" src="/assets/img/default-avatar.png" alt="Default avatar"
+                            style="max-width:150px; max-height:150px; display:block; margin-bottom:0.5em;">
+                    <?php endif; ?>
+
+                    <input id="profile_image" name="profile_image" type="file" accept="image/jpeg,image/png,image/gif"
+                        class="input" style="padding:0.25em 0;">
+                </div>
+
                 <div class="mb-4">
                     <label for="first_name" class="label">First Name</label>
                     <input id="first_name" name="first_name" type="text" required class="input"
@@ -82,7 +96,6 @@ renderMainLayout(
                     <label for="password" class="label">New Password <small>(leave blank to keep current)</small></label>
                     <input id="password" name="password" type="password" class="input">
                 </div>
-
                 <button type="submit" class="button">Update Account</button>
             </form>
         </div>
@@ -90,5 +103,9 @@ renderMainLayout(
     <?php
     },
     $title,
-    "./assets/css/account.css"
+    [
+        'js' => [
+            "./assets/js/script.js"
+        ]
+    ]
 );
