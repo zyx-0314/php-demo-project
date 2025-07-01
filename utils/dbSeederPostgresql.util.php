@@ -16,6 +16,7 @@ $username = $databases['pgUser'];
 $password = $databases['pgPassword'];
 $dbname = $databases['pgDB'];
 
+// Ensure the database connection is valid
 $dsn = "pgsql:host={$databases['pgHost']};port={$port};dbname={$dbname}";
 $pdo = new PDO($dsn, $username, $password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -28,7 +29,7 @@ $sql = file_get_contents('database/users.model.sql');
 if ($sql === false) {
     throw new RuntimeException("Could not read database/users.model.sql");
 } else {
-    echo "Creation Success from the database/users.model.sql";
+    echo "Creation Success from the database/users.model.sql\n";
 }
 
 $pdo->exec($sql);
@@ -41,8 +42,8 @@ foreach (['users'] as $table) {
 echo "Seeding users…\n";
 
 $stmt = $pdo->prepare("
-    INSERT INTO users (username, role, first_name, last_name, password)
-    VALUES (:username, :role, :fn, :ln, :pw)
+    INSERT INTO users (username, role, first_name, last_name, password, email)
+    VALUES (:username, :role, :fn, :ln, :pw, :email)
 ");
 
 foreach ($users as $u) {
@@ -52,6 +53,7 @@ foreach ($users as $u) {
         ':fn' => $u['first_name'],
         ':ln' => $u['last_name'],
         ':pw' => password_hash($u['password'], PASSWORD_DEFAULT),
+        ':email' => $u['email'] ?? null,
     ]);
 }
 

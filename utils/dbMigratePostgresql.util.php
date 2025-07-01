@@ -32,7 +32,7 @@ $sql = file_get_contents('database/users.model.sql');
 if ($sql === false) {
     throw new RuntimeException("Could not read database/users.model.sql");
 } else {
-    echo "Creation Success from the database/users.model.sql";
+    echo "Creation Success from the database/users.model.sql\n";
 }
 
 $pdo->exec($sql);
