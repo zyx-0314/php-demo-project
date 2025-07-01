@@ -53,14 +53,19 @@ function navHeader(array $navList, ?array $user = null): void
 
                 <div class="hidden lg:flex justify-between items-center lg:order-1 w-full lg:w-auto" id="mobile-menu-2">
                     <ul class="flex lg:flex-row flex-col lg:space-x-8 mt-4 lg:mt-0 font-medium">
-                        <?php foreach ($navList as $nav): ?>
-                            <li>
-                                <a href="<?= htmlspecialchars($nav['link']) ?>"
-                                    class="block hover:bg-gray-200 py-2 pr-4 pl-3 rounded text-gray-800 dark:text-white">
-                                    <?= htmlspecialchars($nav['label']) ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
+                        <?php foreach ($navList as $nav):
+                            if ($nav["for"] == "all" || htmlspecialchars($user['role'] ?? '') == "team lead"):
+                                ?>
+                                <li>
+                                    <a href="<?= htmlspecialchars($nav['link']) ?>"
+                                        class="block hover:bg-gray-200 py-2 pr-4 pl-3 rounded text-gray-800 dark:text-white">
+                                        <?= htmlspecialchars($nav['label']) ?>
+                                    </a>
+                                </li>
+                                <?php
+                            endif;
+                        endforeach;
+                        ?>
                     </ul>
                 </div>
             </div>

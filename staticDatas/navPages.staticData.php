@@ -1,5 +1,5 @@
 <?php
 $headNavList = [
-    ["label" => "Home", "link" => "/index.php"],
-    ["label" => "Leader Board", "link" => "/pages/leader/board/index.php"],
+    ["label" => "Home", "link" => "/index.php", "for" => "all"],
+    ["label" => "Accounts", "link" => "/pages/users/index.php", "for" => "team lead"],
 ];
