@@ -91,5 +91,9 @@ renderMainLayout(
     <?php
     },
     $title,
-    "./assets/css/signup.css"
+    [
+        "css" => [
+            "./assets/css/signup.css"
+        ],
+    ]
 );
