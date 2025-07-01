@@ -43,8 +43,11 @@ $input = [
     'password' => $_POST['password'] ?? '',
 ];
 
+// Handle file upload
+$file = $_FILES['profile_image'] ?? null;
+
 // 1) Validate
-$errors = UpdateAccount::validate($pdo, $input);
+$errors = UpdateAccount::validate($pdo, $input, $file);
 
 if (count($errors) > 0) {
     $_SESSION['update_errors'] = $errors;
@@ -55,7 +58,7 @@ if (count($errors) > 0) {
 
 // 2) Apply update
 try {
-    UpdateAccount::apply($pdo, $input);
+    UpdateAccount::apply($pdo, $input, $file);
 
 } catch (PDOException $e) {
     // In practice, most duplicates caught above –

@@ -5,6 +5,7 @@ require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 require_once UTILS_PATH . '/signup.util.php';
+require_once UTILS_PATH . '/auth.util.php';
 
 // Start session so we can flash errors / old input
 Auth::init();
