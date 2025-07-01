@@ -61,5 +61,4 @@ renderMainLayout(
     <?php
     },
     $title,
-    "./assets/css/users.css"
 );
