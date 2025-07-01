@@ -60,5 +60,9 @@ renderMainLayout(
     <?php
     },
     $title,
-    "./assets/css/login.css"
+    [
+        "css" => [
+            "./assets/css/login.css"
+        ],
+    ]
 );
