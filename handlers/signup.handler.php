@@ -7,9 +7,7 @@ require_once UTILS_PATH . '/envSetter.util.php';
 require_once UTILS_PATH . '/signup.util.php';
 
 // Start session so we can flash errors / old input
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+Auth::init();
 
 // Build PDO
 $host = 'host.docker.internal';

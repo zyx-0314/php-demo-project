@@ -23,13 +23,18 @@ $title = "Login Page";
 
 // functions that will render the layout of your choosing
 renderMainLayout(
-    function () use ($error) {
+    function () use ($error, $message) {
         ?>
     <div class="form-container">
         <div class="login-container">
             <form action="/handlers/auth.handler.php" method="POST">
                 <h1 class="title">Sign In</h1>
 
+                <?php if (!empty($message)): ?>
+                    <div class="mb-4 text-green-600">
+                        <?= htmlspecialchars($message) ?>
+                    </div>
+                <?php endif; ?>
 
                 <div class="mb-4">
                     <label for="username" class="label">Username</label>

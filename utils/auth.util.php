@@ -5,7 +5,11 @@ include_once UTILS_PATH . "/envSetter.util.php";
 
 class Auth
 {
-    /** Call early in bootstrap or at top of each page */
+    /**
+     * Initialize session if not already started
+     * 
+     * @return void
+     */
     public static function init(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -13,7 +17,14 @@ class Auth
         }
     }
 
-    /** Attempt login; returns true if successful */
+    /**
+     * Attempt login; returns true if successful
+     * 
+     * @param PDO       $pdo        Used to check for existing users
+     * @param string    $username   Key for user lookup
+     * @param string    $password   User's password
+     * @return bool                 True if login successful, false otherwise
+     */
     public static function login(PDO $pdo, string $username, string $password): bool
     {
         try {
@@ -64,19 +75,31 @@ class Auth
         return true;
     }
 
-    /** Returns current user data or null */
+    /**
+     * Returns the currently logged-in user, or null if not logged in
+     * 
+     * @return array|null   User data if logged in, null otherwise
+     */
     public static function user(): ?array
     {
         return $_SESSION['user'] ?? null;
     }
 
-    /** Returns true if someone is logged in */
+    /**
+     * Check if a user is logged in
+     * 
+     * @return bool   True if logged in, false otherwise
+     */
     public static function check(): bool
     {
         return isset($_SESSION['user']);
     }
 
-    /** Log out the current user */
+    /**
+     * Log out the current user
+     * 
+     * @return void
+     */
     public static function logout(): void
     {
         $_SESSION = [];

@@ -27,7 +27,13 @@ if ($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $usernameInput = trim($_POST['username'] ?? '');
     $passwordInput = trim($_POST['password'] ?? '');
     if (Auth::login($pdo, $usernameInput, $passwordInput)) {
-        header('Location: /index.php');
+        $user = Auth::user();
+
+        if ($user["role"] == "team lead") {
+            header('Location: /pages/users/index.php');
+        } else {
+            header('Location: /index.php');
+        }
         exit;
     } else {
         header('Location: /pages/login/index.php?error=Invalid%Credentials');

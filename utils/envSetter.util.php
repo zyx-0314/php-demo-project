@@ -3,10 +3,16 @@
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
 
+/**
+ * Load environment variables from .env file
+ * 
+ * This function initializes the Dotenv library to load environment variables
+ * from a .env file located at the base path of the application. It sets up
+ */
+
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();
 
-// Distribute the data using array key
 $databases = [
     'pgHost' => $_ENV['PG_HOST'],
     'pgPort' => $_ENV['PG_PORT'],
