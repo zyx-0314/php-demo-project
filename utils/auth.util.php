@@ -30,9 +30,18 @@ class Auth
         try {
             // 1) Fetch the user record
             $stmt = $pdo->prepare("
-                SELECT id, first_name, last_name, username, password, role
-                FROM users
-                WHERE username = :username
+                SELECT
+                u.id,
+                u.first_name,
+                u.last_name,
+                u.username,
+                u.password,
+                u.role,
+                i.filepath AS profile_image_path
+                FROM public.\"users\" u
+                LEFT JOIN public.images i
+                ON u.profile_image_id = i.id
+                WHERE u.username = :username
             ");
             $stmt->execute([':username' => $username]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -69,6 +78,7 @@ class Auth
             'last_name' => $user['last_name'],
             'username' => $user['username'],
             'role' => $user['role'],
+            'profile_image_path' => $user['profile_image_path'] ?? null,
         ];
         error_log("[Auth::login] Login successful for user_id={$user['id']}");
 
