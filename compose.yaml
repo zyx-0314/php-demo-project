@@ -14,8 +14,11 @@ services:
           action: rebuild
         - path: ./composer.lock
           action: rebuild
+    volumes:
+      - ./uploads:/var/www/html/uploads
     depends_on:
       - mongodb
+      - postgresql
 
   mongodb:
     image: mongo:latest
@@ -27,7 +30,7 @@ services:
     ports:
       - "27111:27017"
     volumes:
-      - schedule-arranger-mongodb:/data/db/mongodb
+      - schedule-arranger-mongodb:/data/db
 
   postgresql:
     image: postgres:15
@@ -40,10 +43,12 @@ services:
     ports:
       - "5112:5432"
     volumes:
-      - schedule-arranger-postgresql:/data/db/postgresql
+      - schedule-arranger-postgresql:/var/lib/postgresql/data
 
 volumes:
   schedule-arranger-mongodb:
     driver: local
   schedule-arranger-postgresql:
+    driver: local
+  schedule-arranger-uploads:
     driver: local
