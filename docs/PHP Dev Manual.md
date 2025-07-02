@@ -31,7 +31,7 @@ composer init
 5. Create `router.php` and copy code below
 ```php
 <?php
-require __DIR__ . '/bootstrap.php';
+require BASE_PATH . '/bootstrap.php';
 
 if (php_sapi_name() === 'cli-server') {
     $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

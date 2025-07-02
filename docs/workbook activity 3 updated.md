@@ -462,7 +462,3 @@ Login:
 // _.handler.php
 $_POST['username']
 ```
-
-## 16. (Bonus) Email Integration
-
-## 17. (Bonus) Image Upload in Postgresql

@@ -1,5 +1,5 @@
 <?php
-require BASE_PATH . '/bootstrap.php';
+require __DIR__ . '/bootstrap.php';
 
 if (php_sapi_name() === 'cli-server') {
     $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -11,3 +11,4 @@ if (php_sapi_name() === 'cli-server') {
 
 // fallback to main entry
 require ERRORS_PATH . '/_404.error.php';
+
